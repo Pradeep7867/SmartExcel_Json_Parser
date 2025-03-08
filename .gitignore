@@ -1,5 +1,11 @@
-node modules/
-npm-debug.log
-.DS_Store
-.idea/
-.vscode/
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Ignore build and dependencies
+backend/dist/
+frontend/build/
+
+# Ignore logs and environment files
+*.log
+.env
