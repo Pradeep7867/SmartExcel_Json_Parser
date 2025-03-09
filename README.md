@@ -10,40 +10,34 @@ SmartExcel JSON Parser is a web application that allows users to convert **Excel
 ✅ **Deployed on Vercel** for instant access  
 
 ## 📸 Preview  
-🚀 Live Demo: https://smart-excel-json-client.vercel.app/
+🚀 Live Demo: [SmartExcel JSON Parser](https://smart-excel-json-client.vercel.app/)
+
+---
 
 ## 🛠️ Tech Stack  
 - **Frontend**: React.js, React Router  
 - **Styling**: Inline CSS  
-- **Backend API**: Axios (for handling file conversions)  
-- **Deployment**: Vercel  
+- **Backend API**: Express.js, Multer (for handling file uploads)  
+- **HTTP Requests**: Axios  
+- **Deployment**: Vercel (Frontend), Render (Backend)  
 
-🚀 Installation & Setup
+---
 
-1. Clone the Repository
+## 📥 Installation & Setup  
 
-git clone https://github.com/your-repo-url.git
-cd your-repo-folder
-
-2. Backend Setup
-
-Navigate to the backend directory:
-
+### 1️⃣ Clone the Repository  
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+2️⃣ Backend Setup (Node.js & Express)
+Install Dependencies:
 cd backend
-
-Install dependencies:
-
 npm install
 
-Create a .env file in the backend folder and add:
+3️⃣ Frontend Setup (React.js)
+cd frontend
+npm install
 
-PORT=5000
-UPLOADS_FOLDER=uploads
-
-Start the backend server:
-
-node index.js  # or nodemon index.js (if nodemon is installed)
-
-Server will run on http://localhost:5000
-
-
+```
+📄 License
+This project is free to use and open-source.
