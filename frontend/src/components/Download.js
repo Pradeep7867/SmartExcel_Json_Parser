@@ -1,23 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import * as XLSX from "xlsx";
 
-const Download = () => {
-  const [jsonData, setJsonData] = useState(null);
-
-  const fetchJsonData = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/json-to-excel`);
-      setJsonData(response.data);
-      alert("Data fetched successfully!");
-    } catch (error) {
-      console.error("Error fetching JSON data:", error);
-      alert("Failed to fetch data!");
-    }
-  };
-
+const Download = ({ jsonData }) => {
   const handleDownload = () => {
-    if (!jsonData || jsonData.length === 0) {
+    if (!Array.isArray(jsonData) || jsonData.length === 0) {
       alert("No data to download!");
       return;
     }
@@ -26,18 +12,22 @@ const Download = () => {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
-    XLSX.writeFile(workbook, "exported_data.xlsx");
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/[-T:]/g, "_"); // Generate timestamp
+    XLSX.writeFile(workbook, `data_${timestamp}.xlsx`); // Dynamic filename
   };
 
   return (
-    <div>
-      <button onClick={fetchJsonData} style={styles.button}>
-        Fetch JSON Data
-      </button>
-      <button onClick={handleDownload} style={styles.button} disabled={!jsonData}>
-        Download as Excel
-      </button>
-    </div>
+    <button
+      onClick={handleDownload}
+      style={{
+        ...styles.button,
+        cursor: jsonData ? "pointer" : "not-allowed",
+        opacity: jsonData ? 1 : 0.6,
+      }}
+      disabled={!jsonData}
+    >
+      Download as Excel
+    </button>
   );
 };
 
@@ -48,8 +38,8 @@ const styles = {
     color: "white",
     border: "none",
     borderRadius: "5px",
-    cursor: "pointer",
     margin: "10px 5px",
+    transition: "background 0.3s",
   },
 };
 

@@ -1,28 +1,46 @@
 import React from "react";
 
 const JsonViewer = ({ jsonData }) => {
-  if (!jsonData) return null; // Don't show anything if there's no data
+  if (!jsonData) return <p style={styles.noData}>No JSON Data Available</p>;
+
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(JSON.stringify(jsonData, null, 2));
+    alert("JSON copied to clipboard!");
+  };
 
   return (
     <div style={styles.container}>
-      <h3>Converted JSON Data:</h3>
-      <pre style={styles.pre}>{JSON.stringify(jsonData, null, 2)}</pre>
+      <pre style={styles.jsonContainer}>
+        {JSON.stringify(jsonData, null, 2)}
+      </pre>
+      <button onClick={handleCopy} style={styles.button}>
+        Copy JSON
+      </button>
     </div>
   );
 };
 
 const styles = {
-  container: {
-    marginTop: "20px",
-    padding: "10px",
+  container: { textAlign: "center", margin: "10px" },
+  jsonContainer: {
     backgroundColor: "#f5f5f5",
+    padding: "10px",
     borderRadius: "5px",
-  },
-  pre: {
     whiteSpace: "pre-wrap",
     wordWrap: "break-word",
-    textAlign: "left",
+    fontSize: "14px",
+  },
+  button: {
+    marginTop: "10px",
+    padding: "10px 15px",
+    backgroundColor: "#6A38C2",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   },
 };
+
 
 export default JsonViewer;
