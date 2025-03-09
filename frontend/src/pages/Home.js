@@ -3,11 +3,20 @@ import FileUpload from "../components/FileUpload";
 import JsonViewer from "../components/JsonViewer";
 //import Download from "../components/Download";
 import JsonToExcel from "../components/JsonToExcel";
+import axios from "axios";
+import { useEffect } from "react";
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api";
 
 const Home = () => {
   const [jsonData, setJsonData] = useState(null);
   const [activeTab, setActiveTab] = useState("excelToJson"); // Default: Excel to JSON
-
+  useEffect(() => {
+    // Fetch some initial data from the backend
+    axios.get(`${API_BASE_URL}/some-endpoint`)
+      .then(response => console.log("API Data:", response.data))
+      .catch(error => console.error("Error fetching data:", error));
+  }, []);
   return (
     <div style={styles.container}>
       <h1>SmartExcel JSON Parser</h1>
