@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import FileUpload from "../components/FileUpload";
 import JsonViewer from "../components/JsonViewer";
-import Download from "../components/Download";
+//import Download from "../components/Download";
+import JsonToExcel from "../components/JsonToExcel";
 
 const Home = () => {
   const [jsonData, setJsonData] = useState(null);
@@ -39,15 +40,13 @@ const Home = () => {
       {/* JSON → Excel Section */}
       {activeTab === "jsonToExcel" && (
         <div style={styles.section}>
-          <h3>Upload a JSON file to convert it into Excel</h3>
-          <FileUpload setJsonData={setJsonData} />
-          {jsonData && <Download jsonData={jsonData} />}
+          <h3>Convert JSON to Excel</h3>
+          <JsonToExcel />
         </div>
       )}
     </div>
   );
 };
-
 const styles = {
   container: {
     textAlign: "center",
@@ -84,5 +83,6 @@ const styles = {
     backgroundColor: "#f9f9f9",
   },
 };
+
 
 export default Home;

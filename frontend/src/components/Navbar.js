@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav style={styles.navbar}>
-      <h2>SmartExcel JSON Parser</h2>
+      <h2>Smart-Excel JSON Parser</h2>
       <div>
-        <Link to="/" style={styles.link}>Home</Link>
+      <Link to="/">Home</Link> | <Link to="/about">About</Link>
       </div>
     </nav>
   );

@@ -16,13 +16,13 @@ const FileUpload = () => {
       alert("Please select a file first!");
       return;
     }
-
+  
     const formData = new FormData();
     formData.append("file", file);
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_BASE_URL}/excel-to-json`, // ✅ Corrected API endpoint
+        `${process.env.REACT_APP_API_BASE_URL}/excel-to-json`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -38,7 +38,15 @@ const FileUpload = () => {
       setMessage("Upload Failed!");
     }
   };
-
+// ✅ Define handleCopyJson function here
+const handleCopyJson = () => {
+  if (jsonData) {
+    navigator.clipboard.writeText(JSON.stringify(jsonData, null, 2));
+    alert("JSON copied to clipboard!");
+  } else {
+    alert("No JSON data to copy!");
+  }
+};
   return (
     <div style={styles.container}>
       <input type="file" onChange={handleFileChange} style={styles.input} />
@@ -49,7 +57,8 @@ const FileUpload = () => {
         <>
           <h3>Processed JSON Output:</h3>
           <pre style={styles.pre}>{JSON.stringify(jsonData, null, 2)}</pre>
-          <Download jsonData={jsonData} /> {/* ✅ Pass JSON Data to Download */}
+          <button onClick={handleCopyJson} style={styles.button}>Copy JSON</button>
+          <Download jsonData={jsonData} />
         </>
       )}
     </div>
@@ -81,6 +90,16 @@ const styles = {
     borderRadius: "5px",
     overflowX: "auto",
   },
+  copyButton: {
+    padding: "10px 15px",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    marginLeft: "10px",
+    marginBottom: "10px",
+  }
 };
 
 export default FileUpload;
