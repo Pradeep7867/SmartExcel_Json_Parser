@@ -27,8 +27,8 @@ SmartExcel JSON Parser is a web application that allows users to convert **Excel
 
 ### 1️⃣ Clone the Repository  
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+https://github.com/Pradeep7867/SmartExcel_Json_Parser.git
+cd SmartExcel_Json_Parser.git
 2️⃣ Backend Setup (Node.js & Express)
 Install Dependencies:
 cd backend
